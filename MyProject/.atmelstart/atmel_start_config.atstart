@@ -226,7 +226,7 @@ drivers:
           rtc_clk_selection: Generic clock generator 0
   PWM_BLUE:
     user_label: PWM_BLUE
-    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::TC0::driver_config_definition::16-bit.Waveform.Mode::Lite:TC:PWM
+    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::TC0::driver_config_definition::8-bit.Waveform.Mode::Lite:TC:PWM
     functionality: PWM
     api: Lite:TC:PWM
     configuration:
@@ -237,8 +237,8 @@ drivers:
       count_count: 0
       ctrla_control: true
       ctrla_enable: true
-      ctrla_mode: 0
-      ctrla_prescaler: DIV16
+      ctrla_mode: 1
+      ctrla_prescaler: DIV1024
       ctrla_prescsync: GCLK
       ctrla_runstdby: false
       ctrla_wavegen: NPWM
@@ -264,6 +264,8 @@ drivers:
       intenset_mc1: false
       intenset_ovf: false
       intenset_syncrdy: false
+      per_control: false
+      per_per: 0
       readreq_addr: 0
       readreq_control: false
       readreq_rcont: false
@@ -288,7 +290,7 @@ drivers:
           tc_gclk_selection: Generic clock generator 0
   PWM_GREEN_RED:
     user_label: PWM_GREEN_RED
-    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::TC1::driver_config_definition::16-bit.Waveform.Mode::Lite:TC:PWM
+    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::TC1::driver_config_definition::8-bit.Waveform.Mode::Lite:TC:PWM
     functionality: PWM
     api: Lite:TC:PWM
     configuration:
@@ -299,8 +301,8 @@ drivers:
       count_count: 0
       ctrla_control: true
       ctrla_enable: true
-      ctrla_mode: 0
-      ctrla_prescaler: DIV16
+      ctrla_mode: 1
+      ctrla_prescaler: DIV1024
       ctrla_prescsync: GCLK
       ctrla_runstdby: false
       ctrla_wavegen: NPWM
@@ -326,6 +328,8 @@ drivers:
       intenset_mc1: false
       intenset_ovf: false
       intenset_syncrdy: false
+      per_control: false
+      per_per: 0
       readreq_addr: 0
       readreq_control: false
       readreq_rcont: false

@@ -2,6 +2,7 @@
 #include "user_timer.h"
 #include "user_uart.h"
 #include "user_rgb.h"
+#include "user_rgb.h"
 
 /**
  * Example of using TIMER_0.
@@ -20,6 +21,11 @@ int main(void)
 	wdt_enable(&WDT_0);
 	USART_0_init_PROCESS();
 	
+	
+	hri_tccount16_write_CC_reg(TC0, 1, 0);
+	hri_tccount16_write_CC_reg(TC1, 0, 0);
+	hri_tccount16_write_CC_reg(TC1, 1, 0);
+
 	//// Set initial LED colors
 	//set_blue_pwm(128);    // 50% brightness
 	//set_green_pwm(64);    // 25% brightness
@@ -27,29 +33,31 @@ int main(void)
 	
 	while (1) {
 	/*	wdt_feed(&WDT_0);*/
-	int8_t test = 1;
-	if(isReset==1){
-		wdt_feed(&WDT_0);
-		isReset=0;
-	}
+		dimming();
+		
+		
+		if(isReset==1){
+			wdt_feed(&WDT_0);
+			isReset=0;
+		}
 
-	// process_modbus_request();
+		// process_modbus_request();
 	
-	//pwm_set_parameters(&PWM_GREEN_RED, 1000, 1);
-	//pwm_enable(&PWM_GREEN_RED);
+		//pwm_set_parameters(&PWM_GREEN_RED, 1000, 1);
+		//pwm_enable(&PWM_GREEN_RED);
 	
-	hri_tccount8_write_CC_reg(TC0, 1, 5);
-	hri_tccount8_write_CC_reg(TC1, 0, 5);
-	hri_tccount8_write_CC_reg(TC1, 1, 10);
+		//hri_tccount16_write_CC_reg(TC0, 1, 5);
+		//hri_tccount8_write_CC_reg(TC1, 0, 5);
+		//hri_tccount8_write_CC_reg(TC1, 1, 10);
 
 	
 
 
-	if (rx_complete) {
-		process_modbus_request();
-		rx_count = 0;
-		rx_complete = false;
-	}
-	asm("NOP");
+		if (rx_complete) {
+			process_modbus_request();
+			rx_count = 0;
+			rx_complete = false;
+		}
+		asm("NOP");
 	}
 }

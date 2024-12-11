@@ -51,9 +51,9 @@ int8_t PWM_BLUE_init()
 	hri_tc_write_CTRLA_reg(TC0,
 	                       0 << TC_CTRLA_PRESCSYNC_Pos       /* Prescaler and Counter Synchronization: 0 */
 	                           | 0 << TC_CTRLA_RUNSTDBY_Pos  /* Run in Standby: disabled */
-	                           | 4 << TC_CTRLA_PRESCALER_Pos /* Setting: 4 */
+	                           | 7 << TC_CTRLA_PRESCALER_Pos /* Setting: 7 */
 	                           | 2 << TC_CTRLA_WAVEGEN_Pos   /* Waveform Generation Operation: 2 */
-	                           | 0x0 << TC_CTRLA_MODE_Pos);  /* Operating Mode: 0x0 */
+	                           | 0x1 << TC_CTRLA_MODE_Pos);  /* Operating Mode: 0x1 */
 
 	// hri_tc_write_CTRLB_reg(TC0,0 << TC_CTRLBSET_CMD_Pos /* Command: 0 */
 	//		 | 0 << TC_CTRLBSET_ONESHOT_Pos /* One-Shot: disabled */
@@ -68,11 +68,13 @@ int8_t PWM_BLUE_init()
 
 	// hri_tc_write_DBGCTRL_reg(TC0,0); /* Run in debug: 0 */
 
-	// hri_tccount16_write_CC_reg(TC0, 0 ,0x0); /* Compare/Capture Value: 0x0 */
+	// hri_tccount8_write_CC_reg(TC0, 0 ,0x0); /* Compare/Capture Value: 0x0 */
 
-	// hri_tccount16_write_CC_reg(TC0, 1 ,0x0); /* Compare/Capture Value: 0x0 */
+	// hri_tccount8_write_CC_reg(TC0, 1 ,0x0); /* Compare/Capture Value: 0x0 */
 
-	// hri_tccount16_write_COUNT_reg(TC0,0x0); /* Counter Value: 0x0 */
+	// hri_tccount8_write_COUNT_reg(TC0,0x0); /* Counter Value: 0x0 */
+
+	// hri_tc_write_PER_reg(TC0,0x0); /*  Period Value: 0x0 */
 
 	// hri_tc_write_EVCTRL_reg(TC0,0 << TC_EVCTRL_MCEO0_Pos /* Match or Capture Channel 0 Event Output Enable: disabled
 	// */
@@ -110,9 +112,9 @@ int8_t PWM_GREEN_RED_init()
 	hri_tc_write_CTRLA_reg(TC1,
 	                       0 << TC_CTRLA_PRESCSYNC_Pos       /* Prescaler and Counter Synchronization: 0 */
 	                           | 0 << TC_CTRLA_RUNSTDBY_Pos  /* Run in Standby: disabled */
-	                           | 4 << TC_CTRLA_PRESCALER_Pos /* Setting: 4 */
+	                           | 7 << TC_CTRLA_PRESCALER_Pos /* Setting: 7 */
 	                           | 2 << TC_CTRLA_WAVEGEN_Pos   /* Waveform Generation Operation: 2 */
-	                           | 0x0 << TC_CTRLA_MODE_Pos);  /* Operating Mode: 0x0 */
+	                           | 0x1 << TC_CTRLA_MODE_Pos);  /* Operating Mode: 0x1 */
 
 	// hri_tc_write_CTRLB_reg(TC1,0 << TC_CTRLBSET_CMD_Pos /* Command: 0 */
 	//		 | 0 << TC_CTRLBSET_ONESHOT_Pos /* One-Shot: disabled */
@@ -127,11 +129,13 @@ int8_t PWM_GREEN_RED_init()
 
 	// hri_tc_write_DBGCTRL_reg(TC1,0); /* Run in debug: 0 */
 
-	// hri_tccount16_write_CC_reg(TC1, 0 ,0x0); /* Compare/Capture Value: 0x0 */
+	// hri_tccount8_write_CC_reg(TC1, 0 ,0x0); /* Compare/Capture Value: 0x0 */
 
-	// hri_tccount16_write_CC_reg(TC1, 1 ,0x0); /* Compare/Capture Value: 0x0 */
+	// hri_tccount8_write_CC_reg(TC1, 1 ,0x0); /* Compare/Capture Value: 0x0 */
 
-	// hri_tccount16_write_COUNT_reg(TC1,0x0); /* Counter Value: 0x0 */
+	// hri_tccount8_write_COUNT_reg(TC1,0x0); /* Counter Value: 0x0 */
+
+	// hri_tc_write_PER_reg(TC1,0x0); /*  Period Value: 0x0 */
 
 	// hri_tc_write_EVCTRL_reg(TC1,0 << TC_EVCTRL_MCEO0_Pos /* Match or Capture Channel 0 Event Output Enable: disabled
 	// */

@@ -1,50 +1,111 @@
-﻿//#include "user_rgb.h"
-//#include <hal_gpio.h>
-//
-//// PWM instances for each LED
-//struct pwm_descriptor PWM_BLUE;
-//struct pwm_descriptor PWM_GREEN;
-//struct pwm_descriptor PWM_RED;
-//
-//// Pin 정의
-//#define BLUE GPIO(GPIO_PORTA, 5)  // TX: PA22
-//#define GREEN GPIO(GPIO_PORTA, 6)  // RX: PA23
-//#define RED GPIO(GPIO_PORTA, 7) // DIR: PA24
-//
-//void rgb_led_init(void)
-//{
-	//// Configure pins as outputs
-	//gpio_set_pin_direction(BLUE, GPIO_DIRECTION_OUT);    // Blue
-	//gpio_set_pin_direction(GREEN, GPIO_DIRECTION_OUT);    // Green
-	//gpio_set_pin_direction(RED, GPIO_DIRECTION_OUT);    // Red
-	//
-	//// Initialize PWM for Blue LED (PA05)
-	//pwm_init(&PWM_BLUE, TC0, _tc_get_pwm());
-	//pwm_set_parameters(&PWM_BLUE, 255, 0);    // period = 255, duty = 0
-	//pwm_enable(&PWM_BLUE);
-	//
-	//// Initialize PWM for Green LED (PA06)
-	//pwm_init(&PWM_GREEN, TC1, _tc_get_pwm());
-	//pwm_set_parameters(&PWM_GREEN, 255, 0);
-	//pwm_enable(&PWM_GREEN);
-	//
-	//// Initialize PWM for Red LED (PA07)
-	//pwm_init(&PWM_RED, TC2, _tc_get_pwm());
-	//pwm_set_parameters(&PWM_RED, 255, 0);
-	//pwm_enable(&PWM_RED);
-//}
-//
-//void set_blue_pwm(uint8_t duty)
-//{
-	//pwm_set_parameters(&PWM_BLUE, 255, duty);
-//}
-//
-//void set_green_pwm(uint8_t duty)
-//{
-	//pwm_set_parameters(&PWM_GREEN, 255, duty);
-//}
-//
-//void set_red_pwm(uint8_t duty)
-//{
-	//pwm_set_parameters(&PWM_RED, 255, duty);
-//}
+﻿#include <atmel_start.h>
+#include "user_timer.h"
+
+extern uint32_t timer_ms_count;
+// static struct timer_task RGB_TIMER_task;
+// static uint16_t current_brightness = 0;
+// static bool dimming_up = true;
+// static bool wait_state = false;
+// static uint32_t wait_counter = 0;
+
+// static void rgb_timer_cb(const struct timer_task *const timer_task)
+// {
+//     if (wait_state) {
+//         wait_counter++;
+//         if (wait_counter >= 4000) { // 2초 대기 (500Hz timer 기준)
+//             wait_state = false;
+//             wait_counter = 0;
+//             dimming_up = !dimming_up; // 방향 전환
+//         }
+//         return;
+//     }
+
+//     if (dimming_up) {
+//         if (current_brightness < 65535) {
+//             current_brightness++;
+//             hri_tccount16_write_CC_reg(TC0, 1, current_brightness);
+//             //hri_tccount16_write_CC_reg(TC1, 0, 65535-current_brightness);
+//         } else {
+//             wait_state = true;
+//         }
+//     } else {
+//         if (current_brightness > 0) {
+//             current_brightness--;
+//             hri_tccount16_write_CC_reg(TC0, 1, current_brightness);
+//             //hri_tccount16_write_CC_reg(TC1, 0, 65535-current_brightness);
+//         } else {
+//             wait_state = true;
+//         }
+//     }
+// }
+
+// void dimming(void)
+// {
+//     // Initialize timer for RGB dimming
+//     RGB_TIMER_task.interval = 2;     // 500Hz (2ms interval)
+//     RGB_TIMER_task.cb = rgb_timer_cb;
+//     RGB_TIMER_task.mode = TIMER_TASK_REPEAT;
+
+//     // Add and start the timer task
+//     timer_add_task(&TIMER_0, &RGB_TIMER_task);
+// }
+
+uint16_t brightness = 0;
+uint8_t	dim_mod = 1;
+
+#define DIM_RUN 1
+#define DIM_WAIT 2
+
+void dimming()
+{
+	if(timer_ms_count) return;
+	
+	switch (dim_mod)
+	{
+	case DIM_RUN: //밝기 조절
+		hri_tccount16_write_CC_reg(TC1, 0, brightness);
+		timer_ms_count = 1;
+		
+		brightness +=1;
+		if(brightness > 255) 
+		{
+			dim_mod = DIM_WAIT;
+		}
+		break;
+		
+	case DIM_WAIT : //대기시간
+		hri_tccount16_write_CC_reg(TC1, 0, brightness);
+		timer_ms_count = 1;
+		
+		brightness -=1;
+		if(brightness == 0) 
+		{
+			dim_mod = DIM_RUN;
+		}
+		
+		//timer_ms_count = 2000;
+		//dim_mod = DIM_RUN;
+		//brightness = 0;
+		break;
+		
+	}
+	
+	/*
+	for(int brightness = 0; brightness <= 65535; brightness+=10) {
+	hri_tccount16_write_CC_reg(TC0, 1, brightness);
+	//hri_tccount16_write_CC_reg(TC1, 0, 65535-brightness);
+		timer_delay_ms(1);  // loop 3초 3/65535
+	}
+  
+	timer_delay_ms(2000);  
+	
+	
+	for(int brightness = 0; brightness <= 65535; brightness+=10) {
+	hri_tccount16_write_CC_reg(TC0, 1, 65535-brightness);
+	//hri_tccount16_write_CC_reg(TC1, 0, brightness);
+		timer_delay_ms(1); 
+	}
+  
+	timer_delay_ms(2000);  
+	*/
+}
