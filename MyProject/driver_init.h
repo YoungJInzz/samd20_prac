@@ -23,15 +23,13 @@ extern "C" {
 
 #include <hal_usart_async.h>
 #include <hal_timer.h>
-#include <hal_pwm.h>
-#include <hpl_tc_base.h>
+#include <tc_lite.h>
+#include <tc_lite.h>
 
 #include <hal_wdt.h>
 
 extern struct usart_async_descriptor USART_0;
 extern struct timer_descriptor       TIMER_0;
-
-extern struct pwm_descriptor PWM_0;
 
 extern struct wdt_descriptor WDT_0;
 
@@ -39,9 +37,17 @@ void USART_0_PORT_init(void);
 void USART_0_CLOCK_init(void);
 void USART_0_init(void);
 
-void PWM_0_PORT_init(void);
-void PWM_0_CLOCK_init(void);
-void PWM_0_init(void);
+void PWM_BLUE_CLOCK_init(void);
+
+void PWM_BLUE_PORT_init(void);
+
+int8_t PWM_BLUE_init(void);
+
+void PWM_GREEN_RED_CLOCK_init(void);
+
+void PWM_GREEN_RED_PORT_init(void);
+
+int8_t PWM_GREEN_RED_init(void);
 
 void WDT_0_CLOCK_init(void);
 void WDT_0_init(void);

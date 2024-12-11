@@ -224,27 +224,127 @@ drivers:
           external_frequency: 0
         configuration:
           rtc_clk_selection: Generic clock generator 0
-  PWM_0:
-    user_label: PWM_0
-    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::TC0::driver_config_definition::PWM::HAL:Driver:PWM
+  PWM_BLUE:
+    user_label: PWM_BLUE
+    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::TC0::driver_config_definition::16-bit.Waveform.Mode::Lite:TC:PWM
     functionality: PWM
-    api: HAL:Driver:PWM
+    api: Lite:TC:PWM
     configuration:
-      tc_arch_dbgrun: false
-      tc_arch_evact: Event action disabled
-      tc_arch_mceo0: false
-      tc_arch_mceo1: false
-      tc_arch_mode: Counter in 16-bit mode
-      tc_arch_ovfeo: false
-      tc_arch_presync: Reload or reset counter on next GCLK
-      tc_arch_runstdby: false
-      tc_arch_tcei: false
-      tc_arch_tceinv: false
-      tc_arch_wave_duty_val: 500
-      tc_arch_wave_per_val: 1000
-      tc_prescaler: Divide by 8
-      timer_event_control: false
-    optional_signals: []
+      cc_cc0: 0
+      cc_cc1: 0
+      cc_control: false
+      count_control: false
+      count_count: 0
+      ctrla_control: true
+      ctrla_enable: true
+      ctrla_mode: 0
+      ctrla_prescaler: DIV16
+      ctrla_prescsync: GCLK
+      ctrla_runstdby: false
+      ctrla_wavegen: NPWM
+      ctrlbset_cmd: NONE
+      ctrlbset_control: false
+      ctrlbset_dir: false
+      ctrlbset_oneshot: false
+      ctrlc_control: false
+      ctrlc_inven0: false
+      ctrlc_inven1: false
+      dbgctrl_control: false
+      dbgctrl_dbgrun: false
+      evctrl_control: false
+      evctrl_evact: 'OFF'
+      evctrl_mceo0: false
+      evctrl_mceo1: false
+      evctrl_ovfeo: false
+      evctrl_tcei: false
+      evctrl_tcinv: false
+      intenset_control: false
+      intenset_err: false
+      intenset_mc0: false
+      intenset_mc1: false
+      intenset_ovf: false
+      intenset_syncrdy: false
+      readreq_addr: 0
+      readreq_control: false
+      readreq_rcont: false
+      readreq_rreq: false
+    optional_signals:
+    - identifier: PWM_BLUE:WO/1
+      pad: PA05
+      mode: PWM output
+      configuration: null
+      definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::optional_signal_definition::TC0.WO.1
+      name: TC0/WO/1
+      label: WO/1
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: TC
+          input: Generic clock generator 0
+          external: false
+          external_frequency: 0
+        configuration:
+          tc_gclk_selection: Generic clock generator 0
+  PWM_GREEN_RED:
+    user_label: PWM_GREEN_RED
+    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::TC1::driver_config_definition::16-bit.Waveform.Mode::Lite:TC:PWM
+    functionality: PWM
+    api: Lite:TC:PWM
+    configuration:
+      cc_cc0: 0
+      cc_cc1: 0
+      cc_control: false
+      count_control: false
+      count_count: 0
+      ctrla_control: true
+      ctrla_enable: true
+      ctrla_mode: 0
+      ctrla_prescaler: DIV16
+      ctrla_prescsync: GCLK
+      ctrla_runstdby: false
+      ctrla_wavegen: NPWM
+      ctrlbset_cmd: NONE
+      ctrlbset_control: false
+      ctrlbset_dir: false
+      ctrlbset_oneshot: false
+      ctrlc_control: false
+      ctrlc_inven0: false
+      ctrlc_inven1: false
+      dbgctrl_control: false
+      dbgctrl_dbgrun: false
+      evctrl_control: false
+      evctrl_evact: 'OFF'
+      evctrl_mceo0: false
+      evctrl_mceo1: false
+      evctrl_ovfeo: false
+      evctrl_tcei: false
+      evctrl_tcinv: false
+      intenset_control: false
+      intenset_err: false
+      intenset_mc0: false
+      intenset_mc1: false
+      intenset_ovf: false
+      intenset_syncrdy: false
+      readreq_addr: 0
+      readreq_control: false
+      readreq_rcont: false
+      readreq_rreq: false
+    optional_signals:
+    - identifier: PWM_GREEN_RED:WO/0
+      pad: PA06
+      mode: PWM output
+      configuration: null
+      definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::optional_signal_definition::TC1.WO.0
+      name: TC1/WO/0
+      label: WO/0
+    - identifier: PWM_GREEN_RED:WO/1
+      pad: PA07
+      mode: PWM output
+      configuration: null
+      definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::optional_signal_definition::TC1.WO.1
+      name: TC1/WO/1
+      label: WO/1
     variant: null
     clocks:
       domain_group:
@@ -261,9 +361,9 @@ drivers:
     functionality: System
     api: HAL:HPL:SYSCTRL
     configuration:
-      $input: 12000000
+      $input: 32768
       $input_id: Generic clock generator 3
-      RESERVED_InputFreq: 12000000
+      RESERVED_InputFreq: 32768
       RESERVED_InputFreq_id: Generic clock generator 3
       _$freq_output_8MHz Internal Oscillator (OSC8M): 1000000
       _$freq_output_Digital Frequency Locked Loop (DFLL48M): 48000000
@@ -349,6 +449,31 @@ drivers:
         configuration:
           wdt_gclk_selection: Generic clock generator 4
 pads:
+  blue:
+    name: PA05
+    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::pad::PA05
+    mode: Peripheral IO
+    user_label: blue
+    configuration: null
+  PA06:
+    name: PA06
+    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::pad::PA06
+    mode: Peripheral IO
+    user_label: PA06
+    configuration: null
+  PA07:
+    name: PA07
+    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::pad::PA07
+    mode: Peripheral IO
+    user_label: PA07
+    configuration: null
+  sw1:
+    name: PA08
+    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::pad::PA08
+    mode: Digital input
+    user_label: sw1
+    configuration:
+      pad_pull_config: Pull-up
   PA22:
     name: PA22
     definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::pad::PA22
@@ -364,14 +489,16 @@ pads:
   s1_led:
     name: PA27
     definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::pad::PA27
-    mode: Peripheral IO
+    mode: Digital output
     user_label: s1_led
-    configuration: null
+    configuration:
+      pad_initial_level: High
   s2_led:
     name: PA28
     definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::pad::PA28
-    mode: Peripheral IO
+    mode: Digital output
     user_label: s2_led
-    configuration: null
+    configuration:
+      pad_initial_level: High
 toolchain_options: []
 static_files: []

@@ -23,8 +23,6 @@ struct timer_descriptor       TIMER_0;
 
 static uint8_t USART_0_buffer[USART_0_BUFFER_SIZE];
 
-struct pwm_descriptor PWM_0;
-
 struct wdt_descriptor WDT_0;
 
 /**
@@ -76,21 +74,32 @@ static void TIMER_0_init(void)
 	timer_init(&TIMER_0, RTC, _rtc_get_timer());
 }
 
-void PWM_0_PORT_init(void)
+void PWM_BLUE_PORT_init(void)
 {
+
+	gpio_set_pin_function(blue, PINMUX_PA05F_TC0_WO1);
 }
 
-void PWM_0_CLOCK_init(void)
+void PWM_BLUE_CLOCK_init(void)
 {
 	_pm_enable_bus_clock(PM_BUS_APBC, TC0);
+
 	_gclk_enable_channel(TC0_GCLK_ID, CONF_GCLK_TC0_SRC);
 }
 
-void PWM_0_init(void)
+void PWM_GREEN_RED_PORT_init(void)
 {
-	PWM_0_CLOCK_init();
-	PWM_0_PORT_init();
-	pwm_init(&PWM_0, TC0, _tc_get_pwm());
+
+	gpio_set_pin_function(PA06, PINMUX_PA06F_TC1_WO0);
+
+	gpio_set_pin_function(PA07, PINMUX_PA07F_TC1_WO1);
+}
+
+void PWM_GREEN_RED_CLOCK_init(void)
+{
+	_pm_enable_bus_clock(PM_BUS_APBC, TC1);
+
+	_gclk_enable_channel(TC1_GCLK_ID, CONF_GCLK_TC1_SRC);
 }
 
 void WDT_0_CLOCK_init(void)
@@ -109,11 +118,46 @@ void system_init(void)
 {
 	init_mcu();
 
+	// GPIO on PA08
+
+	// Set pin direction to input
+	gpio_set_pin_direction(sw1, GPIO_DIRECTION_IN);
+
+	gpio_set_pin_pull_mode(sw1,
+	                       // <y> Pull configuration
+	                       // <id> pad_pull_config
+	                       // <GPIO_PULL_OFF"> Off
+	                       // <GPIO_PULL_UP"> Pull-up
+	                       // <GPIO_PULL_DOWN"> Pull-down
+	                       GPIO_PULL_UP);
+
+	gpio_set_pin_function(sw1, GPIO_PIN_FUNCTION_OFF);
+
 	// GPIO on PA27
+
+	gpio_set_pin_level(s1_led,
+	                   // <y> Initial level
+	                   // <id> pad_initial_level
+	                   // <false"> Low
+	                   // <true"> High
+	                   true);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(s1_led, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_function(s1_led, GPIO_PIN_FUNCTION_OFF);
 
 	// GPIO on PA28
+
+	gpio_set_pin_level(s2_led,
+	                   // <y> Initial level
+	                   // <id> pad_initial_level
+	                   // <false"> Low
+	                   // <true"> High
+	                   true);
+
+	// Set pin direction to output
+	gpio_set_pin_direction(s2_led, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_function(s2_led, GPIO_PIN_FUNCTION_OFF);
 
@@ -121,7 +165,17 @@ void system_init(void)
 
 	TIMER_0_init();
 
-	PWM_0_init();
+	PWM_BLUE_CLOCK_init();
+
+	PWM_BLUE_PORT_init();
+
+	PWM_BLUE_init();
+
+	PWM_GREEN_RED_CLOCK_init();
+
+	PWM_GREEN_RED_PORT_init();
+
+	PWM_GREEN_RED_init();
 
 	WDT_0_init();
 }

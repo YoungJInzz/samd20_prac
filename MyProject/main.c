@@ -34,6 +34,15 @@ int main(void)
 	}
 
 	// process_modbus_request();
+	
+	//pwm_set_parameters(&PWM_GREEN_RED, 1000, 1);
+	//pwm_enable(&PWM_GREEN_RED);
+	
+	hri_tccount8_write_CC_reg(TC0, 1, 5);
+	hri_tccount8_write_CC_reg(TC1, 0, 5);
+	hri_tccount8_write_CC_reg(TC1, 1, 10);
+
+	
 
 
 	if (rx_complete) {
