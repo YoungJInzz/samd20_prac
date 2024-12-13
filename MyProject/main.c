@@ -5,8 +5,8 @@
 #include "user_rgb.h"
 
 /**
- * Example of using TIMER_0.
- */
+* Example of using TIMER_0.
+*/
 //uint16_t test_type = 300;
 
 
@@ -32,7 +32,7 @@ int main(void)
 	//set_red_pwm(192);     // 75% brightness
 	
 	while (1) {
-	/*	wdt_feed(&WDT_0);*/
+		/*	wdt_feed(&WDT_0);*/
 		dimming();
 		
 		
@@ -42,15 +42,15 @@ int main(void)
 		}
 
 		// process_modbus_request();
-	
+		
 		//pwm_set_parameters(&PWM_GREEN_RED, 1000, 1);
 		//pwm_enable(&PWM_GREEN_RED);
-	
+		
 		//hri_tccount16_write_CC_reg(TC0, 1, 5);
 		//hri_tccount8_write_CC_reg(TC1, 0, 5);
 		//hri_tccount8_write_CC_reg(TC1, 1, 10);
 
-	
+		
 
 
 		if (rx_complete) {

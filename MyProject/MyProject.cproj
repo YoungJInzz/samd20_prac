@@ -30,15 +30,15 @@
     <EraseKey />
     <AsfFrameworkConfig>
       <framework-data xmlns="">
-  <options />
-  <configurations />
-  <files />
-  <documentation help="" />
-  <offline-documentation help="" />
-  <dependencies>
-    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.52.0" />
-  </dependencies>
-</framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.52.0" />
+        </dependencies>
+      </framework-data>
     </AsfFrameworkConfig>
     <Compiler>gcc</Compiler>
     <configurator>AtmelStart</configurator>
@@ -120,9 +120,9 @@
           <AcmeProjectActionInfo Action="File" Source="hri/hri_tc_d20.h" IsConfig="false" Hash="v4iBtmlsZVEJ7WY0nNXUFQ" />
           <AcmeProjectActionInfo Action="File" Source="hri/hri_wdt_d20.h" IsConfig="false" Hash="CvxZhuVaogZGBinSJmwxJQ" />
           <AcmeProjectActionInfo Action="File" Source="main.c" IsConfig="false" Hash="k0AH7j+BrmdFhBPzCCMptA" />
-          <AcmeProjectActionInfo Action="File" Source="driver_init.c" IsConfig="false" Hash="9CTn5RWVaq0Nl0epyLhdhg" />
+          <AcmeProjectActionInfo Action="File" Source="driver_init.c" IsConfig="false" Hash="PbhFz3e33I/WqWWQbFcV3A" />
           <AcmeProjectActionInfo Action="File" Source="driver_init.h" IsConfig="false" Hash="BcYiVhyMv7KS25LE1uSA9w" />
-          <AcmeProjectActionInfo Action="File" Source="atmel_start_pins.h" IsConfig="false" Hash="lNbLVC8bpxKOXAN+bR+0Xg" />
+          <AcmeProjectActionInfo Action="File" Source="atmel_start_pins.h" IsConfig="false" Hash="P+D/aGz8szyGuhOFZthQQA" />
           <AcmeProjectActionInfo Action="File" Source="examples/driver_examples.h" IsConfig="false" Hash="BNDWLWP0reuSRx3PSvAsWw" />
           <AcmeProjectActionInfo Action="File" Source="examples/driver_examples.c" IsConfig="false" Hash="6tQQRHBRW8zkE+bMgF7PwQ" />
           <AcmeProjectActionInfo Action="File" Source="hal/include/hal_timer.h" IsConfig="false" Hash="5pZVthtMl40VMvofOld2ng" />

@@ -133,6 +133,51 @@ void system_init(void)
 
 	gpio_set_pin_function(sw1, GPIO_PIN_FUNCTION_OFF);
 
+	// GPIO on PA09
+
+	// Set pin direction to input
+	gpio_set_pin_direction(sw2, GPIO_DIRECTION_IN);
+
+	gpio_set_pin_pull_mode(sw2,
+	                       // <y> Pull configuration
+	                       // <id> pad_pull_config
+	                       // <GPIO_PULL_OFF"> Off
+	                       // <GPIO_PULL_UP"> Pull-up
+	                       // <GPIO_PULL_DOWN"> Pull-down
+	                       GPIO_PULL_UP);
+
+	gpio_set_pin_function(sw2, GPIO_PIN_FUNCTION_OFF);
+
+	// GPIO on PA10
+
+	// Set pin direction to input
+	gpio_set_pin_direction(sw3, GPIO_DIRECTION_IN);
+
+	gpio_set_pin_pull_mode(sw3,
+	                       // <y> Pull configuration
+	                       // <id> pad_pull_config
+	                       // <GPIO_PULL_OFF"> Off
+	                       // <GPIO_PULL_UP"> Pull-up
+	                       // <GPIO_PULL_DOWN"> Pull-down
+	                       GPIO_PULL_UP);
+
+	gpio_set_pin_function(sw3, GPIO_PIN_FUNCTION_OFF);
+
+	// GPIO on PA11
+
+	// Set pin direction to input
+	gpio_set_pin_direction(sw4, GPIO_DIRECTION_IN);
+
+	gpio_set_pin_pull_mode(sw4,
+	                       // <y> Pull configuration
+	                       // <id> pad_pull_config
+	                       // <GPIO_PULL_OFF"> Off
+	                       // <GPIO_PULL_UP"> Pull-up
+	                       // <GPIO_PULL_DOWN"> Pull-down
+	                       GPIO_PULL_UP);
+
+	gpio_set_pin_function(sw4, GPIO_PIN_FUNCTION_OFF);
+
 	// GPIO on PA27
 
 	gpio_set_pin_level(s1_led,

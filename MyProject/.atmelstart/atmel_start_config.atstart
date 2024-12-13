@@ -478,6 +478,27 @@ pads:
     user_label: sw1
     configuration:
       pad_pull_config: Pull-up
+  sw2:
+    name: PA09
+    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::pad::PA09
+    mode: Digital input
+    user_label: sw2
+    configuration:
+      pad_pull_config: Pull-up
+  sw3:
+    name: PA10
+    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::pad::PA10
+    mode: Digital input
+    user_label: sw3
+    configuration:
+      pad_pull_config: Pull-up
+  sw4:
+    name: PA11
+    definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::pad::PA11
+    mode: Digital input
+    user_label: sw4
+    configuration:
+      pad_pull_config: Pull-up
   PA22:
     name: PA22
     definition: Atmel:SAMD20_Drivers:0.0.1::SAMD20E17A-AN::pad::PA22
