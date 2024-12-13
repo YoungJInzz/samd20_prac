@@ -738,10 +738,16 @@
     <Compile Include="user_driver\header\user_rgb.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="user_driver\header\user_switch.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="user_driver\header\user_timer.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="user_driver\header\user_uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_driver\source\user_switch.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="user_driver\source\user_rgb.c">

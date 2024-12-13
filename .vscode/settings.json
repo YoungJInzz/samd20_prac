@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "atmel_start.h": "c",
-    "user_timer.h": "c"
+    "user_timer.h": "c",
+    "user_switch.h": "c"
   }
 }
