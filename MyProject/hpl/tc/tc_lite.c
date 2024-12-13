@@ -51,7 +51,7 @@ int8_t PWM_BLUE_init()
 	hri_tc_write_CTRLA_reg(TC0,
 	                       0 << TC_CTRLA_PRESCSYNC_Pos       /* Prescaler and Counter Synchronization: 0 */
 	                           | 0 << TC_CTRLA_RUNSTDBY_Pos  /* Run in Standby: disabled */
-	                           | 7 << TC_CTRLA_PRESCALER_Pos /* Setting: 7 */
+	                           | 0 << TC_CTRLA_PRESCALER_Pos /* Setting: 0 */
 	                           | 2 << TC_CTRLA_WAVEGEN_Pos   /* Waveform Generation Operation: 2 */
 	                           | 0x1 << TC_CTRLA_MODE_Pos);  /* Operating Mode: 0x1 */
 
@@ -112,7 +112,7 @@ int8_t PWM_GREEN_RED_init()
 	hri_tc_write_CTRLA_reg(TC1,
 	                       0 << TC_CTRLA_PRESCSYNC_Pos       /* Prescaler and Counter Synchronization: 0 */
 	                           | 0 << TC_CTRLA_RUNSTDBY_Pos  /* Run in Standby: disabled */
-	                           | 7 << TC_CTRLA_PRESCALER_Pos /* Setting: 7 */
+	                           | 0 << TC_CTRLA_PRESCALER_Pos /* Setting: 0 */
 	                           | 2 << TC_CTRLA_WAVEGEN_Pos   /* Waveform Generation Operation: 2 */
 	                           | 0x1 << TC_CTRLA_MODE_Pos);  /* Operating Mode: 0x1 */
 
@@ -135,7 +135,7 @@ int8_t PWM_GREEN_RED_init()
 
 	// hri_tccount8_write_COUNT_reg(TC1,0x0); /* Counter Value: 0x0 */
 
-	// hri_tc_write_PER_reg(TC1,0x0); /*  Period Value: 0x0 */
+	hri_tc_write_PER_reg(TC1, 0xff); /*  Period Value: 0xff */
 
 	// hri_tc_write_EVCTRL_reg(TC1,0 << TC_EVCTRL_MCEO0_Pos /* Match or Capture Channel 0 Event Output Enable: disabled
 	// */

@@ -238,7 +238,7 @@ drivers:
       ctrla_control: true
       ctrla_enable: true
       ctrla_mode: 1
-      ctrla_prescaler: DIV1024
+      ctrla_prescaler: DIV1
       ctrla_prescsync: GCLK
       ctrla_runstdby: false
       ctrla_wavegen: NPWM
@@ -296,13 +296,13 @@ drivers:
     configuration:
       cc_cc0: 0
       cc_cc1: 0
-      cc_control: false
+      cc_control: true
       count_control: false
       count_count: 0
       ctrla_control: true
       ctrla_enable: true
       ctrla_mode: 1
-      ctrla_prescaler: DIV1024
+      ctrla_prescaler: DIV1
       ctrla_prescsync: GCLK
       ctrla_runstdby: false
       ctrla_wavegen: NPWM
@@ -328,8 +328,8 @@ drivers:
       intenset_mc1: false
       intenset_ovf: false
       intenset_syncrdy: false
-      per_control: false
-      per_per: 0
+      per_control: true
+      per_per: 255
       readreq_addr: 0
       readreq_control: false
       readreq_rcont: false
