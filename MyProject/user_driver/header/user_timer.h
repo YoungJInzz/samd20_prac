@@ -13,5 +13,6 @@ extern int isReset;
 
 void TIMER_0_enable(void);
 void timer_delay_ms(uint32_t ms);  // ms 딜레이 함수
+extern uint32_t timer_ms_count; 
 
 #endif /* USER_TIMER_H_ */

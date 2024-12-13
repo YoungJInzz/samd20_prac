@@ -24,20 +24,6 @@ static void TIMER_0_task1_cb(const struct timer_task *const timer_task)
 static void TIMER_0_task_ms_cb(const struct timer_task *const timer_task)
 {
     if(timer_ms_count) timer_ms_count--;
-    
-    // 오버플로우 방지: 특정 값에 도달하면 카운터 초기화
-    //if (timer_ms_count >= MAX_TIMER_MS_COUNT) {
-   //     timer_ms_count = 0;
-   // }
-}
-
-void timer_delay_ms(uint32_t ms)
-{
-
-    uint32_t start_time = timer_ms_count;
-    while ((timer_ms_count - start_time) < ms) {
-        //  대기
-    }
 }
 
 void TIMER_0_enable(void)

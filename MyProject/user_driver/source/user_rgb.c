@@ -1,7 +1,7 @@
 ﻿#include <atmel_start.h>
 #include "user_timer.h"
 
-extern uint32_t timer_ms_count;
+ 
 // static struct timer_task RGB_TIMER_task;
 // static uint16_t current_brightness = 0;
 // static bool dimming_up = true;
@@ -53,8 +53,8 @@ extern uint32_t timer_ms_count;
 uint16_t brightness = 0;
 uint8_t	dim_mod = 1;
 
-#define DIM_RUN 1
-#define DIM_WAIT 2
+#define Brigter 1
+#define Darker 2
 
 void dimming()
 {
@@ -62,28 +62,29 @@ void dimming()
 	
 	switch (dim_mod)
 	{
-	case DIM_RUN: //밝기 조절
+	case Brigter: //밝기 조절
 		hri_tccount16_write_CC_reg(TC1, 0, brightness);
-		timer_ms_count = 1;
+		timer_ms_count = 10;
 		
 		brightness +=1;
-		if(brightness > 255) 
+		if(brightness == 255) 
 		{
-			dim_mod = DIM_WAIT;
+			dim_mod = Darker;
 		}
 		break;
 		
-	case DIM_WAIT : //대기시간
+	case Darker : //대기시간
+		brightness -= 1;
 		hri_tccount16_write_CC_reg(TC1, 0, brightness);
-		timer_ms_count = 1;
+		timer_ms_count = 10;
 		
-		brightness -=1;
 		if(brightness == 0) 
 		{
-			dim_mod = DIM_RUN;
+			dim_mod = Brigter;
+			//timer_ms_count = 2000;
+
 		}
 		
-		//timer_ms_count = 2000;
 		//dim_mod = DIM_RUN;
 		//brightness = 0;
 		break;
