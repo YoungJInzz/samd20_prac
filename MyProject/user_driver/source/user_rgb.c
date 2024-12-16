@@ -44,9 +44,12 @@ void changeColor()
 {
 	if(timer_ms_count) return;
 	
-	hri_tccount8_write_CC_reg(TC0, 1, hex_val*5);
+	
+	(TC0, 1, hex_val*5);
 	hri_tccount8_write_CC_reg(TC1, 0, hex_val*2);
 	hri_tccount8_write_CC_reg(TC1, 1, hex_val*3);
+		hri_tccount16_write_CC_reg(TC1, 1, hex_val*3);
+
 	timer_ms_count=1;
 	
 }

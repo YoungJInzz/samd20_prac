@@ -21,6 +21,7 @@
 #define GPIO_PIN_FUNCTION_G 6
 #define GPIO_PIN_FUNCTION_H 7
 
+#define PA02 GPIO(GPIO_PORTA, 2)
 #define blue GPIO(GPIO_PORTA, 5)
 #define PA06 GPIO(GPIO_PORTA, 6)
 #define PA07 GPIO(GPIO_PORTA, 7)

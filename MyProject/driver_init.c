@@ -13,6 +13,7 @@
 #include <hpl_gclk_base.h>
 #include <hpl_pm_base.h>
 
+#include <hpl_adc_base.h>
 #include <hpl_rtc_base.h>
 
 /*! The buffer size for USART */
@@ -23,7 +24,31 @@ struct timer_descriptor       TIMER_0;
 
 static uint8_t USART_0_buffer[USART_0_BUFFER_SIZE];
 
+struct adc_sync_descriptor ADC_0;
+
 struct wdt_descriptor WDT_0;
+
+void ADC_0_PORT_init(void)
+{
+
+	// Disable digital pin circuitry
+	gpio_set_pin_direction(PA02, GPIO_DIRECTION_OFF);
+
+	gpio_set_pin_function(PA02, PINMUX_PA02B_ADC_AIN0);
+}
+
+void ADC_0_CLOCK_init(void)
+{
+	_pm_enable_bus_clock(PM_BUS_APBC, ADC);
+	_gclk_enable_channel(ADC_GCLK_ID, CONF_GCLK_ADC_SRC);
+}
+
+void ADC_0_init(void)
+{
+	ADC_0_CLOCK_init();
+	ADC_0_PORT_init();
+	adc_sync_init(&ADC_0, ADC, (void *)NULL);
+}
 
 /**
  * \brief USART Clock initialization function
@@ -205,6 +230,8 @@ void system_init(void)
 	gpio_set_pin_direction(s2_led, GPIO_DIRECTION_OUT);
 
 	gpio_set_pin_function(s2_led, GPIO_PIN_FUNCTION_OFF);
+
+	ADC_0_init();
 
 	USART_0_init();
 
